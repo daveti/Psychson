@@ -32,4 +32,4 @@ firmware.s: $(ASSS)
 	$(CC) $(CFLAGS) -S $< -o $@
 
 clean:
-	rm -rf firmware.* $(RELS) $(ASSS) *.asm *.rst *.lst *.sym
+	rm -rf $(RELS) $(ASSS) *.asm *.rst *.lst *.sym *.lk *.mem *.map
