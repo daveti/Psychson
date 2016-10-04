@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+# Generate the 8051 firmware using the template file,
+# sdcc compiled binary, and sfk tool with wine
+# Sep 14, 2016
+# daveti
+
+echo "Generating the firmware..."
+make
+d52 -d firmware.bin
+hexdump firmware.bin > firmware.hex
+cp ../templates/FWdummy.bin fw.bin
+wine ../tools/sfk.exe partcopy firmware.bin -fromto 0 -1 fw.bin 512 -yes
+d52 -d fw.bin
+hexdump fw.bin > fw.hex
+make clean
+echo "Done"

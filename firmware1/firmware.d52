@@ -1,0 +1,327 @@
+;
+;  D52 V3.4.1 8052 Disassembly of firmware.bin
+;  2016/10/04 12:12
+;
+	org	0
+;
+	ljmp	X0021		; 0000   02 00 21   ..!
+;
+	reti			; 0003   32         2
+;
+	org	0bh
+;
+	reti			; 000b   32         2
+;
+	org	13h
+;
+	reti			; 0013   32         2
+;
+	org	1bh
+;
+	ljmp	X01b9		; 001b   02 01 b9   ..9
+;
+X001e:	ljmp	X019f		; 001e   02 01 9f   ...
+;
+X0021:	mov	sp,#0eh		; 0021   75 81 0e   u..
+	lcall	X01d7		; 0024   12 01 d7   ..W
+	mov	a,dpl		; 0027   e5 82      e.
+	jz	X002e		; 0029   60 03      `.
+	ljmp	X001e		; 002b   02 00 1e   ...
+;
+X002e:	mov	r1,#0		; 002e   79 00      y.
+	mov	a,r1		; 0030   e9         i
+	orl	a,#0		; 0031   44 00      D.
+	jz	X0050		; 0033   60 1b      `.
+	mov	r2,#0		; 0035   7a 00      z.
+	mov	dptr,#X01db	; 0037   90 01 db   ..[
+	mov	r0,#0		; 003a   78 00      x.
+	mov	p2,#60h		; 003c   75 a0 60   u `
+X003f:	clr	a		; 003f   e4         d
+	movc	a,@a+dptr	; 0040   93         .
+	movx	@r0,a		; 0041   f2         r
+	inc	dptr		; 0042   a3         #
+	inc	r0		; 0043   08         .
+	cjne	r0,#0,X0049	; 0044   b8 00 02   8..
+	inc	p2		; 0047   05 a0      . 
+X0049:	djnz	r1,X003f	; 0049   d9 f4      Yt
+	djnz	r2,X003f	; 004b   da f2      Zr
+	mov	p2,#0ffh	; 004d   75 a0 ff   u .
+X0050:	clr	a		; 0050   e4         d
+	mov	r0,#0ffh	; 0051   78 ff      x.
+X0053:	mov	@r0,a		; 0053   f6         v
+	djnz	r0,X0053	; 0054   d8 fd      X}
+	mov	r0,#0		; 0056   78 00      x.
+	mov	a,r0		; 0058   e8         h
+	orl	a,#0		; 0059   44 00      D.
+	jz	X0067		; 005b   60 0a      `.
+	mov	r1,#0		; 005d   79 00      y.
+	mov	p2,#60h		; 005f   75 a0 60   u `
+	clr	a		; 0062   e4         d
+X0063:	movx	@r1,a		; 0063   f3         s
+	inc	r1		; 0064   09         .
+	djnz	r0,X0063	; 0065   d8 fc      X|
+X0067:	mov	r0,#0		; 0067   78 00      x.
+	mov	a,r0		; 0069   e8         h
+	orl	a,#0		; 006a   44 00      D.
+	jz	X007a		; 006c   60 0c      `.
+	mov	r1,#0		; 006e   79 00      y.
+	mov	dptr,#X6000	; 0070   90 60 00   .`.
+	clr	a		; 0073   e4         d
+X0074:	movx	@dptr,a		; 0074   f0         p
+	inc	dptr		; 0075   a3         #
+	djnz	r0,X0074	; 0076   d8 fc      X|
+	djnz	r1,X0074	; 0078   d9 fa      Yz
+X007a:	ljmp	X001e		; 007a   02 00 1e   ...
+;
+X007d:	mov	dptr,#Xfa40	; 007d   90 fa 40   .z@
+	mov	a,#40h		; 0080   74 40      t@
+	movx	@dptr,a		; 0082   f0         p
+	mov	dptr,#Xfa41	; 0083   90 fa 41   .zA
+	clr	a		; 0086   e4         d
+	movx	@dptr,a		; 0087   f0         p
+	mov	dptr,#Xfa42	; 0088   90 fa 42   .zB
+	mov	a,#40h		; 008b   74 40      t@
+	movx	@dptr,a		; 008d   f0         p
+	mov	dptr,#Xfa43	; 008e   90 fa 43   .zC
+	mov	a,#60h		; 0091   74 60      t`
+	movx	@dptr,a		; 0093   f0         p
+	mov	dptr,#Xfa44	; 0094   90 fa 44   .zD
+	clr	a		; 0097   e4         d
+	movx	@dptr,a		; 0098   f0         p
+	mov	dptr,#Xfa45	; 0099   90 fa 45   .zE
+	mov	a,#60h		; 009c   74 60      t`
+	movx	@dptr,a		; 009e   f0         p
+	mov	dptr,#Xfa46	; 009f   90 fa 46   .zF
+	mov	a,#70h		; 00a2   74 70      tp
+	movx	@dptr,a		; 00a4   f0         p
+	mov	dptr,#Xfa47	; 00a5   90 fa 47   .zG
+	clr	a		; 00a8   e4         d
+	movx	@dptr,a		; 00a9   f0         p
+	mov	dptr,#Xf809	; 00aa   90 f8 09   .x.
+	mov	a,#7		; 00ad   74 07      t.
+	movx	@dptr,a		; 00af   f0         p
+	mov	dptr,#Xf80a	; 00b0   90 f8 0a   .x.
+	mov	a,#1fh		; 00b3   74 1f      t.
+	movx	@dptr,a		; 00b5   f0         p
+	mov	dptr,#Xf810	; 00b6   90 f8 10   .x.
+	mov	a,#60h		; 00b9   74 60      t`
+	movx	@dptr,a		; 00bb   f0         p
+	mov	dptr,#Xf811	; 00bc   90 f8 11   .x.
+	clr	a		; 00bf   e4         d
+	movx	@dptr,a		; 00c0   f0         p
+	mov	dptr,#Xf08f	; 00c1   90 f0 8f   .p.
+	movx	@dptr,a		; 00c4   f0         p
+	mov	dptr,#Xfa6f	; 00c5   90 fa 6f   .zo
+	mov	a,#1fh		; 00c8   74 1f      t.
+	movx	@dptr,a		; 00ca   f0         p
+	mov	dptr,#Xfa60	; 00cb   90 fa 60   .z`
+	mov	a,#2		; 00ce   74 02      t.
+	movx	@dptr,a		; 00d0   f0         p
+	mov	dptr,#Xfa61	; 00d1   90 fa 61   .za
+	clr	a		; 00d4   e4         d
+	movx	@dptr,a		; 00d5   f0         p
+	mov	dptr,#Xfa64	; 00d6   90 fa 64   .zd
+	movx	@dptr,a		; 00d9   f0         p
+	mov	dptr,#Xfa65	; 00da   90 fa 65   .ze
+	movx	@dptr,a		; 00dd   f0         p
+	mov	dptr,#Xfa66	; 00de   90 fa 66   .zf
+	movx	@dptr,a		; 00e1   f0         p
+	mov	dptr,#Xfa67	; 00e2   90 fa 67   .zg
+	movx	@dptr,a		; 00e5   f0         p
+	mov	dptr,#Xfa62	; 00e6   90 fa 62   .zb
+	mov	a,#0fh		; 00e9   74 0f      t.
+	movx	@dptr,a		; 00eb   f0         p
+	mov	dptr,#Xfa6f	; 00ec   90 fa 6f   .zo
+	mov	a,#1fh		; 00ef   74 1f      t.
+	movx	@dptr,a		; 00f1   f0         p
+	mov	dptr,#Xfa14	; 00f2   90 fa 14   .z.
+	movx	a,@dptr		; 00f5   e0         `
+	mov	r7,a		; 00f6   ff         .
+	mov	a,#0fdh		; 00f7   74 fd      t}
+	anl	a,r7		; 00f9   5f         _
+	movx	@dptr,a		; 00fa   f0         p
+	mov	dptr,#Xfa15	; 00fb   90 fa 15   .z.
+	movx	a,@dptr		; 00fe   e0         `
+	mov	r7,a		; 00ff   ff         .
+	mov	a,#2		; 0100   74 02      t.
+	orl	a,r7		; 0102   4f         O
+	movx	@dptr,a		; 0103   f0         p
+	mov	dptr,#Xfa21	; 0104   90 fa 21   .z!
+	mov	a,#7		; 0107   74 07      t.
+	movx	@dptr,a		; 0109   f0         p
+	movx	a,@dptr		; 010a   e0         `
+	mov	r7,a		; 010b   ff         .
+	anl	rb0r7,#0fbh	; 010c   53 07 fb   S.{
+	mov	dptr,#Xfa21	; 010f   90 fa 21   .z!
+	mov	a,r7		; 0112   ef         o
+	movx	@dptr,a		; 0113   f0         p
+	mov	dptr,#Xfa68	; 0114   90 fa 68   .zh
+	movx	a,@dptr		; 0117   e0         `
+	anl	a,#0f7h		; 0118   54 f7      Tw
+	movx	@dptr,a		; 011a   f0         p
+	mov	dptr,#Xfa69	; 011b   90 fa 69   .zi
+	movx	a,@dptr		; 011e   e0         `
+	anl	a,#0f7h		; 011f   54 f7      Tw
+	movx	@dptr,a		; 0121   f0         p
+	mov	dptr,#Xfa6a	; 0122   90 fa 6a   .zj
+	movx	a,@dptr		; 0125   e0         `
+	anl	a,#0f7h		; 0126   54 f7      Tw
+	movx	@dptr,a		; 0128   f0         p
+	mov	dptr,#Xfa6b	; 0129   90 fa 6b   .zk
+	movx	a,@dptr		; 012c   e0         `
+	anl	a,#0f7h		; 012d   54 f7      Tw
+	movx	@dptr,a		; 012f   f0         p
+	mov	dptr,#Xfe00	; 0130   90 fe 00   .~.
+	clr	a		; 0133   e4         d
+	movx	@dptr,a		; 0134   f0         p
+	mov	a,#80h		; 0135   74 80      t.
+	movx	@dptr,a		; 0137   f0         p
+	mov	dptr,#Xfa50	; 0138   90 fa 50   .zP
+	mov	a,#20h		; 013b   74 20      t 
+	movx	@dptr,a		; 013d   f0         p
+	mov	dptr,#Xfe01	; 013e   90 fe 01   .~.
+	clr	a		; 0141   e4         d
+	movx	@dptr,a		; 0142   f0         p
+	mov	dptr,#Xfe02	; 0143   90 fe 02   .~.
+	mov	a,#45h		; 0146   74 45      tE
+	movx	@dptr,a		; 0148   f0         p
+	mov	tmod,#11h	; 0149   75 89 11   u..
+	mov	th0,#0f0h	; 014c   75 8c f0   u.p
+	mov	tl0,#5fh	; 014f   75 8a 5f   u._
+	mov	th1,#0f0h	; 0152   75 8d f0   u.p
+	mov	tl1,#5fh	; 0155   75 8b 5f   u._
+	mov	ip,#1		; 0158   75 b8 01   u8.
+	mov	tcon,#10h	; 015b   75 88 10   u..
+	mov	scon,#0		; 015e   75 98 00   u..
+	mov	ie,#80h		; 0161   75 a8 80   u(.
+	ret			; 0164   22         "
+;
+X0165:	mov	dptr,#Xfa38	; 0165   90 fa 38   .z8
+	movx	a,@dptr		; 0168   e0         `
+	mov	r7,a		; 0169   ff         .
+	jnb	acc.1,X016e	; 016a   30 e1 01   0a.
+	ret			; 016d   22         "
+;
+X016e:	mov	dptr,#Xf000	; 016e   90 f0 00   .p.
+	mov	a,#5		; 0171   74 05      t.
+	movx	@dptr,a		; 0173   f0         p
+	mov	dptr,#Xf210	; 0174   90 f2 10   .r.
+	mov	a,#0ffh		; 0177   74 ff      t.
+	movx	@dptr,a		; 0179   f0         p
+	mov	dptr,#Xf211	; 017a   90 f2 11   .r.
+	mov	a,#2		; 017d   74 02      t.
+	movx	@dptr,a		; 017f   f0         p
+	mov	dptr,#Xf212	; 0180   90 f2 12   .r.
+	inc	a		; 0183   04         .
+	movx	@dptr,a		; 0184   f0         p
+	mov	dptr,#Xf213	; 0185   90 f2 13   .r.
+	mov	a,#24h		; 0188   74 24      t$
+	movx	@dptr,a		; 018a   f0         p
+	mov	dptr,#Xf000	; 018b   90 f0 00   .p.
+	clr	a		; 018e   e4         d
+	movx	@dptr,a		; 018f   f0         p
+	mov	dptr,#Xfa6b	; 0190   90 fa 6b   .zk
+	dec	a		; 0193   14         .
+	movx	@dptr,a		; 0194   f0         p
+X0195:	mov	dptr,#Xf014	; 0195   90 f0 14   .p.
+	movx	a,@dptr		; 0198   e0         `
+	mov	r7,a		; 0199   ff         .
+	anl	a,#3		; 019a   54 03      T.
+	jz	X0195		; 019c   60 f7      `w
+	ret			; 019e   22         "
+;
+X019f:	lcall	X007d		; 019f   12 00 7d   ..}
+	lcall	X0165		; 01a2   12 01 65   ..e
+X01a5:	inc	rb1r0		; 01a5   05 08      ..
+	clr	a		; 01a7   e4         d
+	cjne	a,rb1r0,X01b7	; 01a8   b5 08 0c   5..
+	inc	rb1r1		; 01ab   05 09      ..
+	cjne	a,rb1r1,X01b7	; 01ad   b5 09 07   5..
+	inc	rb1r2		; 01b0   05 0a      ..
+	cjne	a,rb1r2,X01a5	; 01b2   b5 0a f0   5.p
+	inc	rb1r3		; 01b5   05 0b      ..
+X01b7:	sjmp	X01a5		; 01b7   80 ec      .l
+;
+X01b9:	push	rb0r7		; 01b9   c0 07      @.
+	push	rb0r6		; 01bb   c0 06      @.
+	push	psw		; 01bd   c0 d0      @P
+	mov	psw,#0		; 01bf   75 d0 00   uP.
+	clr	tr1		; 01c2   c2 8e      B.
+	mov	r7,rb1r6	; 01c4   af 0e      /.
+	mov	th1,r7		; 01c6   8f 8d      ..
+	mov	r6,rb1r5	; 01c8   ae 0d      ..
+	mov	tl1,r6		; 01ca   8e 8b      ..
+	inc	rb1r4		; 01cc   05 0c      ..
+	setb	tr1		; 01ce   d2 8e      R.
+	pop	psw		; 01d0   d0 d0      PP
+	pop	rb0r6		; 01d2   d0 06      P.
+	pop	rb0r7		; 01d4   d0 07      P.
+	reti			; 01d6   32         2
+;
+X01d7:	mov	dpl,#0		; 01d7   75 82 00   u..
+	ret			; 01da   22         "
+;
+X01db:	mov	r7,a		; 01db   ff         .
+;
+;	Register/Memory Equates
+;
+rb0r6	equ	6
+rb0r7	equ	7
+rb1r0	equ	8
+rb1r1	equ	9
+rb1r2	equ	0ah
+rb1r3	equ	0bh
+rb1r4	equ	0ch
+rb1r5	equ	0dh
+rb1r6	equ	0eh
+;
+;	Miscellaneous equates
+;
+;  These are addresses referenced in the code but
+;  which are in the middle of a multibyte instruction
+;  or are addresses outside the initialized space
+;
+X6000	equ	6000h
+Xf000	equ	0f000h
+Xf014	equ	0f014h
+Xf08f	equ	0f08fh
+Xf210	equ	0f210h
+Xf211	equ	0f211h
+Xf212	equ	0f212h
+Xf213	equ	0f213h
+Xf809	equ	0f809h
+Xf80a	equ	0f80ah
+Xf810	equ	0f810h
+Xf811	equ	0f811h
+Xfa14	equ	0fa14h
+Xfa15	equ	0fa15h
+Xfa21	equ	0fa21h
+Xfa38	equ	0fa38h
+Xfa40	equ	0fa40h
+Xfa41	equ	0fa41h
+Xfa42	equ	0fa42h
+Xfa43	equ	0fa43h
+Xfa44	equ	0fa44h
+Xfa45	equ	0fa45h
+Xfa46	equ	0fa46h
+Xfa47	equ	0fa47h
+Xfa50	equ	0fa50h
+Xfa60	equ	0fa60h
+Xfa61	equ	0fa61h
+Xfa62	equ	0fa62h
+Xfa64	equ	0fa64h
+Xfa65	equ	0fa65h
+Xfa66	equ	0fa66h
+Xfa67	equ	0fa67h
+Xfa68	equ	0fa68h
+Xfa69	equ	0fa69h
+Xfa6a	equ	0fa6ah
+Xfa6b	equ	0fa6bh
+Xfa6f	equ	0fa6fh
+Xfe00	equ	0fe00h
+Xfe01	equ	0fe01h
+Xfe02	equ	0fe02h
+;
+	end
+;
+
