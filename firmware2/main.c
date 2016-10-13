@@ -1,5 +1,5 @@
 #include "defs.h"
-#include "timers.h"
+//#include "timers.h"
 #include "usb.h"
 
 extern void usb_isr(void) __interrupt USB_VECT;

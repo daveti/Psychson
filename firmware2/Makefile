@@ -11,7 +11,7 @@ CFLAGS=--model-small -mmcs51 -pdefcpu
 LINKFLAGS=--xram-loc 0x6000
 MAKEBINFLAGS=-p
 
-SRCS=main.c timers.c control.c usb.c scsi.c
+SRCS=main.c control.c usb.c
 RELS=$(SRCS:.c=.rel)
 ASSS=$(SRCS:.c=.s)
 

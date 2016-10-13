@@ -1,6 +1,6 @@
 #include "defs.h"
 #include "string.h"
-#include "timers.h"
+//#include "timers.h"
 
 BYTE	bmRequestType;
 WORD	wLength;
