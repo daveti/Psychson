@@ -5,7 +5,7 @@ void InitUSB(void);
 void HandleUSBEvents(void);
 void SendControlResponse(int size);
 //void SendData0(WORD size, BYTE offset);
-//void SendData1(WORD size, BYTE offset);
+void SendData1(WORD size, BYTE offset);
 void SetDMA(BYTE p5, BYTE p3, BYTE px);
 
 extern BYTE	bmRequestType;
